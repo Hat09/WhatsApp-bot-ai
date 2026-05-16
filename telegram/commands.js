@@ -264,7 +264,7 @@ export function registerCommands(bot, manager) {
     bot.sendMessage(msg.chat.id, '❓ Gunakan `/aibadge on` atau `/aibadge off`', { parse_mode: 'Markdown' })
   })
 
-  // ════��═══════════════════════════════════════════════════════════════════
+  // ════════════════════════════════════════════════════════════════════════
   // ✅ /kirim  —  flow interaktif 3 langkah
   // ════════════════════════════════════════════════════════════════════════
   bot.onText(/^\/kirim$/, (msg) => {
@@ -532,7 +532,10 @@ export function registerCommands(bot, manager) {
     blash.isRunning = false
     blashManager.deleteBlash(blashId)
     
-    bot.sendMessage(msg.chat.id, `🛑 *Blash Dihentikan\\!*\n\nLoop selesai: *${blash.loopCount}/${blash.config.totalLoops === Infinity ? 'unlimited' : blash.config.totalLoops}*`, { parse_mode: 'MarkdownV2' })
+    bot.sendMessage(msg.chat.id, 
+      `🛑 *Blash Dihentikan\\!*\n\nLoop selesai: *${blash.loopCount}/${blash.config.totalLoops === Infinity ? 'unlimited' : blash.config.totalLoops}*`, 
+      { parse_mode: 'MarkdownV2' }
+    )
   })
 
   bot.onText(/^\/blashstatus$/, (msg) => {
@@ -644,7 +647,7 @@ async function startBlashLoopParallel(bot, manager, blashId, chatId) {
     const allResults = Object.values(blash.results)
     const totalSuccess = allResults.reduce((sum, r) => sum + r.success, 0)
     const totalFail = allResults.reduce((sum, r) => sum + r.fail, 0)
-    const totalMessages = (totalSuccess + totalFail) * blash.config.accounts.length
+    const totalMessages = totalSuccess + totalFail
     
     bot.sendMessage(chatId,
       `✅ *Blash Selesai\\!*\n\n🔁 Total Loop: *${blash.loopCount}*\n👥 Akun: *${blash.config.accounts.length}*\n\n📊 *Statistik Total:*\n✅ Berhasil: *${totalSuccess}*\n❌ Gagal: *${totalFail}*\n📨 Total Pesan: *${totalMessages}*\n⚡ Mode: *PARALLEL*`,
