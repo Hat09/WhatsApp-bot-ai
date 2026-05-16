@@ -1,0 +1,21 @@
+{
+  "name": "wa-telegram-manager",
+  "version": "1.0.0",
+  "description": "WhatsApp Multi-Account Manager via Telegram Bot",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "dependencies": {
+    "@crysnovax/baileys": "latest",
+    "@hapi/boom": "^10.0.1",
+    "node-telegram-bot-api": "^0.66.0",
+    "pino": "^9.0.0",
+    "node-cache": "^5.1.2",
+    "dotenv": "^16.4.5",
+    "qrcode": "^1.5.4",
+    "fs-extra": "^11.2.0"
+  }
+}
